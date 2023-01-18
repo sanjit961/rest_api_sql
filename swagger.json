@@ -1,0 +1,266 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API made using NodeJs - Mysql Database",
+    "description": "User Restful webservice application",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "schemes": ["http", "https"],
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Customers",
+      "description": "API for Customers"
+    }
+  ],
+  "produces": ["application/json", "application/text"],
+  "paths": {
+    "/post": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "query",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "address",
+          "in": "query",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": ["application/json"],
+      "post": {
+        "tags": ["Customers"],
+        "summary": "Register the user",
+        "responses": {
+          "200": {
+            "description": "ok"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "301": {
+            "description": "Moved Permanently"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/getUsers": {
+      "get": {
+        "tags": ["Customers"],
+        "summary": "Get all users",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/customers"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "301": {
+            "description": "Moved Permanently"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/getById/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "Id of the user which is to be searched",
+          "type": "integer"
+        }
+      ],
+      "produces": ["application/json"],
+      "get": {
+        "tags": ["Customers"],
+        "summary": "Get user by id",
+        "responses": {
+          "200": {
+            "description": "ok"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "301": {
+            "description": "Moved Permanently"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/delete/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "Id of the user which is to be deleted",
+          "type": "integer"
+        }
+      ],
+      "produces": ["application/json"],
+      "delete": {
+        "tags": ["Customers"],
+        "summary": "Delete user by id",
+        "responses": {
+          "200": {
+            "description": "ok"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "301": {
+            "description": "Moved Permanently"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/update": {
+      "produces": ["application/json"],
+      "put": {
+        "tags": ["Customers"],
+        "summary": "Update user by id",
+        "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User that we want to create",
+              "schema": {
+                "$ref": "#/definitions/customers"
+              }
+            }
+          ],
+        "responses": {
+          "200": {
+            "description": "ok"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "301": {
+            "description": "Moved Permanently"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "customers": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      }
+    },
+    "Customers": {
+      "type": "array",
+      "$ref": "#/definitions/customers"
+    }
+  }
+}
